@@ -1,0 +1,78 @@
+import java.awt.FlowLayout;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.Icon;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import java.net.URL;
+import java.net.MalformedURLException;
+import java.util.concurrent.TimeUnit;
+import java.awt.Image;
+import java.awt.*;
+import javax.swing.*;
+import java.net.URL;
+import java.awt.image.BufferedImage;
+/**
+ * The class RainbowRalphingCat is a component of the replica of the Exploding Kittens game. 
+ * @prereq      none
+ * @param     none
+ * @return       none             
+ * @post        The program prints out a window of a picture and a window of a gif of the corresponding special effect.
+ * Andy Yim and Tommy Yim 
+ * 
+ */
+public class RainbowRalphingCat extends JPanel{
+    Image img;
+    public void RRC() throws IOException
+    {
+        URL url = new URL("https://pbs.twimg.com/media/CPigst6UkAEdoZO.png");
+        ImageIcon icon=new ImageIcon(url);
+        JLabel lbl=new JLabel();
+        lbl.setIcon(icon);
+        JFrame frame=new JFrame();
+        frame.setLayout(new FlowLayout());
+        frame.setSize(400,400);
+        frame.add(lbl);
+        frame.setVisible(true);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        JFrame f = new JFrame("RainbowRalphingCat Animation");
+        f.add(new RainbowRalphingCat());
+        f.move(400,0);
+        f.pack();
+        f.setVisible(true);
+        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
+    }//ends RRC method
+    // should be paintComponent for a JComponent
+    //public void paint(Graphics g) {
+    public void paintComponent(Graphics g) {
+        g.drawImage(img, 0, 0, this);
+    }//ends paintComponent method
+    public RainbowRalphingCat() {
+        try {
+            URL url = new URL("https://i.imgur.com/KM1UJn3.gif");
+            // as mentioned, ImageIO will not load animated GIFs correctly.
+            //img = ImageIO.read(url));
+            // but the toolkit method will, OTOH..
+            img = Toolkit.getDefaultToolkit().createImage(url);
+            // ..we need a MediaTracker
+            MediaTracker mt = new MediaTracker(this);
+            mt.addImage(img, 0);
+            mt.waitForAll();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//ends RainbowRalphingCat constructor
+    public Dimension getPreferredSize() {
+        if (img == null) {
+            return new Dimension(700, 500);
+        } else {
+            return new Dimension(img.getWidth(this), img.getHeight(this));
+        }
+    }//ends getPreferredSize method
+}//ends RainbowRalphingCat class
+
