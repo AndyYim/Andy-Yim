@@ -1,0 +1,236 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.image.*;
+import javax.imageio.*;
+import java.io.*;
+import java.util.Scanner;
+import java.util.*;
+import java.io.File;
+import java.io.IOException;
+import java.io.FileWriter;
+import java.io.BufferedWriter;
+/**
+ * The class Tricat is a component of the replica of the Exploding Kittens game. 
+ * @prereq      none
+ * @param     player, pSteal, size, EKC, player1, player2, player3, player4
+ * @return       none             
+ * @post        The program prints out a window containing a simulation of the game "Exploding Kittens" and inputs into and outputs files representing components of "Exploding Kittens".
+ * Andy Yim and Tommy Yim 
+ * 
+ */
+public class Tricat extends Game
+{
+    // instance variables
+    /**
+     * Constructor for objects of class Tricat
+     */
+    public Tricat()
+    {
+        // initialise instance variables
+        super();
+    }//ends Tricat constructor
+    public void threeCatEffect(int player, int pSteal, int size, ArrayList<String> EKC, ArrayList<String> player1, ArrayList<String> player2, ArrayList<String> player3, ArrayList<String> player4, int stat) throws IOException
+    {
+        Attacked atk = new Attacked();
+        Scanner scan = new Scanner(System.in);
+        String p1 = "C:\\Users\\1049467\\Desktop\\EKHand1.txt";
+        String p2 = "C:\\Users\\1049467\\Desktop\\EKHand2.txt";
+        String p3 = "C:\\Users\\1049467\\Desktop\\EKHand3.txt";
+        String p4 = "C:\\Users\\1049467\\Desktop\\EKHand4.txt";
+        String strSteal = "";
+        switch (pSteal)
+        {
+            case 1:
+            System.out.println("Type a card that you want to steal from Player " + pSteal);
+            strSteal = scan.nextLine();
+            if (player1.contains(strSteal) && player == 2 || player == 02)
+            {
+                player1.remove(strSteal);
+                player2.add(strSteal);
+                if (player == 2)
+                {
+                    secondPlayer("null","null","null", size, EKC, player1, player2, player3, player4, stat);
+                }//go back to secondPlayer after effect
+                else if (player == 02)
+                {
+                    atk.secondPlayerAttacked("null","null","null", size, EKC, player1, player2, player3, player4, stat);
+                }//go back to secondPlayerAttacked after effect
+            }//p2 stealing a card from p1 if p1 has the card p2 wants
+            else if (player1.contains(strSteal) && player == 3 || player == 03)
+            {
+                player1.remove(strSteal);
+                player3.add(strSteal);
+                if (player == 3)
+                {
+                    thirdPlayer("null","null","null", size, EKC, player1, player2, player3, player4, stat);
+                }//go back to thirdPlayer after effect
+                else if (player == 03)
+                {
+                    atk.thirdPlayerAttacked("null","null","null", size, EKC, player1, player2, player3, player4, stat);
+                }//go back to thirdPlayerAttacked after effect
+            }//p3 stealing a card from p1 if p1 has the card p3 wants
+            else if (player1.contains(strSteal) && player == 4 || player == 04)
+            {
+                player1.remove(strSteal);
+                player4.add(strSteal);
+                if (player == 4)
+                {
+                    fourthPlayer("null","null","null", size, EKC, player1, player2, player3, player4, stat);
+                }//go back to fourthPlayer after effect
+                else if (player == 04)
+                {
+                    atk.fourthPlayerAttacked("null","null","null", size, EKC, player1, player2, player3, player4, stat);
+                }//go back to fourthPlayerAttacked after effect
+            }//p4 stealing a card from p1 if p1 has the card p4 wants
+            else
+            {
+                System.out.println("You got nothing.");
+            }//Print "You got nothing" if p1 doesn’t have the card the other player wants
+            break;
+            case 2:
+            System.out.println("Type a card that you want to steal from Player " + pSteal);
+            strSteal = scan.nextLine();
+            if (player2.contains(strSteal) && player == 1 || player == 01)
+            {
+                player2.remove(strSteal);
+                player1.add(strSteal);
+                if (player == 1)
+                {
+                    firstPlayer("null","null","null", size, EKC, player1, player2, player3, player4, stat);
+                }//go back to firstPlayer after effect
+                else if (player == 01)
+                {
+                    atk.firstPlayerAttacked("null","null","null", size, EKC, player1, player2, player3, player4, stat);
+                }//go back to firstPlayerAttacked after effect
+            }//p1 stealing a card from p2 if p2 has the card p1 wants
+            else if (player2.contains(strSteal) && player == 3 || player == 03)
+            {
+                player2.remove(strSteal);
+                player3.add(strSteal);
+                if (player == 3)
+                {
+                    thirdPlayer("null","null","null", size, EKC, player1, player2, player3, player4, stat);
+                }//go back to thirdPlayer after effect
+                else if (player == 03)
+                {
+                    atk.thirdPlayerAttacked("null","null","null", size, EKC, player1, player2, player3, player4, stat);
+                }//go back to thirdPlayerAttacked after effect
+            }//p3 stealing a card from p2 if p2 has the card p3 wants
+            else if (player2.contains(strSteal) && player == 4 || player == 04)
+            {
+                player2.remove(strSteal);
+                player4.add(strSteal);
+                if (player == 4)
+                {
+                    fourthPlayer("null","null","null", size, EKC, player1, player2, player3, player4, stat);
+                }//go back to fourthPlayer after effect
+                else if (player == 04)
+                {
+                    atk.fourthPlayerAttacked("null","null","null", size, EKC, player1, player2, player3, player4, stat);
+                }//go back to fourthPlayerAttacked after effect
+            }//p4 stealing a card from p2 if p2 has the card p4 wants
+            else
+            {
+                System.out.println("You got nothing.");
+            }//Print "You got nothing" if p2 doesnt have the card the other player wants
+            break;
+            case 3:
+            System.out.println("Type a card that you want to steal from Player " + pSteal);
+            strSteal = scan.nextLine();
+            if (player3.contains(strSteal) && player == 1 && player == 01)
+            {
+                player3.remove(strSteal);
+                player1.add(strSteal);                
+                if (player == 1)
+                {
+                    firstPlayer("null","null","null", size, EKC, player1, player2, player3, player4, stat);
+                }//go back to firstPlayer after effect
+                else if (player == 01)
+                {
+                    atk.firstPlayerAttacked("null","null","null", size, EKC, player1, player2, player3, player4, stat);
+                }//go back to firstPlayerAttacked after effect
+            }//p1 stealing a card from p3 if p3 has the card p1 wants
+            if (player3.contains(strSteal) && player == 2 && player == 02)
+            {
+                player3.remove(strSteal);
+                player2.add(strSteal);
+                if (player == 2)
+                {
+                    secondPlayer("null","null","null", size, EKC, player1, player2, player3, player4, stat);
+                }//go back to secondPlayer after effect
+                else if (player == 02)
+                {
+                    atk.secondPlayerAttacked("null","null","null", size, EKC, player1, player2, player3, player4, stat);
+                }//go back to secondPlayerAttacked after effect
+            }//p2 stealing a card from p3 if p3 has the card p2 wants
+            if (player3.contains(strSteal) && player == 4 && player == 04)
+            {
+                player3.remove(strSteal);
+                player4.add(strSteal);
+                if (player == 4)
+                {
+                    fourthPlayer("null","null","null", size, EKC, player1, player2, player3, player4, stat);
+                }//go back to fourthPlayer after effect
+                else if (player == 04)
+                {
+                    atk.fourthPlayerAttacked("null","null","null", size, EKC, player1, player2, player3, player4, stat);
+                }//go back to fourthPlayerAttacked after effect
+            }//p4 stealing a card from p3 if p3 has the card p4 wants
+            else
+            {
+                System.out.println("You got nothing.");
+            }//Print "You got nothing" if p3 doesnt have the card the other player wants
+            break;
+            case 4:
+            System.out.println("Type a card that you want to steal from Player " + pSteal);
+            strSteal = scan.nextLine();
+            if (player4.contains(strSteal) && player == 1 && player == 01)
+            {
+                player4.remove(strSteal);
+                player1.add(strSteal);
+                if (player == 1)
+                {
+                    firstPlayer("null","null","null", size, EKC, player1, player2, player3, player4, stat);
+                }//go back to firstPlayer after effect
+                else if (player == 01)
+                {
+                    atk.firstPlayerAttacked("null","null","null", size, EKC, player1, player2, player3, player4, stat);
+                }//go back to firstPlayerAttacked after effect
+            }//p1 stealing a card from p4 if p4 has the card p1 wants
+            else if (player4.contains(strSteal) && player == 2 && player == 02)
+            {
+                player4.remove(strSteal);
+                player2.add(strSteal);
+                if (player == 2)
+                {
+                    secondPlayer("null","null","null", size, EKC, player1, player2, player3, player4, stat);
+                }//go back to secondPlayer after effect
+                else if (player == 02)
+                {
+                    atk.secondPlayerAttacked("null","null","null", size, EKC, player1, player2, player3, player4, stat);
+                }//go back to secondPlayerAttacked after effect
+            }//p2 stealing a card from p4 if p4 has the card p2 wants
+            else if (player4.contains(strSteal) && player == 3 && player == 03)
+            {
+                player4.remove(strSteal);
+                player3.add(strSteal);
+                if (player == 3)
+                {
+                    thirdPlayer("null","null","null", size, EKC, player1, player2, player3, player4, stat);
+                }//go back to thirdPlayer after effect
+                else if (player == 03)
+                {
+                    atk.thirdPlayerAttacked("null","null","null", size, EKC, player1, player2, player3, player4, stat);
+                }//go back to thirdPlayerAttacked after effect
+            }//p3 stealing a card from p4 if p4 has the card p3 wants
+            else
+            {
+                System.out.println("You got nothing.");
+            }//Print "You got nothing" if p4 doesnt have the card the other player wants
+            break;
+        }//ends switch statement
+    }//ends method for effects for having and using three of the same kind of cat
+}//ends Tricat class
+
+
+
