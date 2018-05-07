@@ -1,0 +1,83 @@
+import java.util.Random;
+import java.util.Scanner;
+import java.util.*;
+import java.io.File;
+import java.io.IOException;
+import java.io.FileWriter;
+import java.io.BufferedWriter;
+/**
+ * The class Help is a component of the replica of the Exploding Kittens game. 
+ * @prereq      none
+ * @param      none
+ * @return       none             
+ * @post        The program prints out a window containing a simulation of the game "Exploding Kittens" and inputs into and outputs files representing components of "Exploding Kittens".
+ * Andy Yim and Tommy Yim 
+ * 
+ */
+public class Help
+{
+    // instance variables 
+    private EK c1;
+    /**
+     * Constructor for objects of class Help
+     */
+    public Help()
+    {
+        Scanner scan = new Scanner(System.in);
+        String p = "C:\\Users\\1049467\\Desktop\\EKHelp.txt";
+        System.out.println("Check your desktop for a file called EKHelp.txt.");
+        System.out.println("Delete all files when everyone is finished or when the game is discontinued.");
+        System.out.println();
+        try
+        {
+            FileWriter fw = new FileWriter(p, true);
+            BufferedWriter bw = new BufferedWriter(fw);
+            bw.write("(*2) 2 cats = user chooses any player and takes a random card of user's choice");
+            bw.newLine();
+            bw.write("(*3) 3 cats = user chooses any player and types any card of their choice");
+            bw.newLine();
+            bw.write("(*3) (cont). if the opposing player has the card, then the user takes the card");
+            bw.newLine();
+            bw.write("(*3) (cont). else the opposing player doesn't have the card, then the user does not take any card");
+            bw.newLine();
+            bw.write("Skip - skips the player's turn who used Skip");
+            bw.newLine();
+            bw.write("Attack - skips the player's turn who used Attack and gives the next player 2 more turns");
+            bw.newLine();
+            bw.write("Shuffle - shuffles the deck");
+            bw.newLine();
+            bw.write("Favor - ask any player to give the player who used favor any card of the recipient's choice");
+            bw.newLine();
+            bw.write("Hairy Potato Cat - a cat (*2) (*3)");
+            bw.newLine();
+            bw.write("Cattermelon - a cat (*2) (*3)");
+            bw.newLine();
+            bw.write("Rainbow-Ralphing Cat - a cat (*2) (*3)");
+            bw.newLine();
+            bw.write("Beard Cat - a cat (*2) (*3) ");
+            bw.newLine();
+            bw.write("Taco Cat - a cat (*2) (*3)");
+            bw.newLine();
+            bw.write("See the Future - sees the top 3 cards of the deck");
+            bw.newLine();
+            bw.write("Nope - denies the action of any cards with special effects (including the 2 and 3 cat effects)");
+            bw.newLine();
+            bw.write("Exploding Kittens - a deadly kitten (cannot use Nope on this card) that explodes unless you have a defuse");
+            bw.newLine();
+            bw.close();
+        }//try block displaying help instructions in EKHelp.txt file
+        catch(IOException e)
+        {
+            System.out.println("Error " + e);
+        }//checks, catches, and displays error if error exists
+        System.out.println("Press 'r' to return to main menu: ");
+        String key = scan.nextLine();
+        System.out.println();
+        if (key.equals("r"))
+        {
+            c1 = new EK();
+        }//goes back to EK class if players are ready and ends if statement
+    }//ends Help constructor
+}//ends Help class
+
+
