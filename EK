@@ -1,0 +1,135 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.image.*;
+import javax.imageio.*;
+import java.io.*;
+import java.util.Scanner;
+import java.util.*;
+import java.io.File;
+import java.io.IOException;
+import java.io.FileWriter;
+import java.io.BufferedWriter;
+/**
+ * The class EK is a component of the replica of the Exploding Kittens game. 
+ * @prereq      none
+ * @param      none
+ * @return       none             
+ * @post        The program prints out a window containing a simulation of the game "Exploding Kittens" and inputs into and outputs files representing components of "Exploding Kittens".
+ * Andy Yim and Tommy Yim 
+ * 
+ */
+public class EK 
+{
+    // instance variables - replace the example below with your own
+    /**
+     * Constructor for objects of class Start
+     */
+
+    public static void main(String[] args) throws IOException
+    {
+        ArrayList<String> EKC = new ArrayList<String> ();
+        ArrayList<String> myEKC = new ArrayList<String> ();
+        int stat = 0;
+        Scanner scan = new Scanner(System.in);
+        System.out.println("----------EXPLODING KITTENS BETA----------");
+        System.out.println("***There are some glitches. If you encounter them, ignore them");
+        System.out.println("and continue with the game or rerun the program.***");
+        System.out.println("In the deck of cards are some Exploding Kittens."); 
+        System.out.println("There are also action cards that you can type to activate their effects.");
+        System.out.println("These effects will help you gain a less likely chance to draw an Exploding Kitten.");
+        System.out.println("Players can play as many action cards as they want. Their turn ends when they draw a card.");
+        System.out.println("You play the game by taking turns drawing cards until someone draws an Exploding Kitten.");
+        System.out.println("When that happens, that person can use a defuse card."); 
+        System.out.println("If they can't, they are now dead and out of the game.");
+        System.out.println("Commands: 1) type the card's EXACT name 2) d# to draw a card and end turn 3) h for help 4) ragequit");
+        System.out.println("Keep track of and open files that appear on your desktop!");
+        System.out.println("1) Player Files (EKHand#.txt) 2) See the Future Files (EKHand#STF.txt) 3) Help Files (EKHelp.txt) 4) Discard File (EKDiscard.txt)");
+        System.out.println("IMPORTANT: CONSTANTLY OPEN AND CLOSE YOUR FILES AND CHECK YOUR FILES"); 
+        System.out.println("AT THE START AND END OF YOUR TURN TO REFRESH AND UPDATE YOUR HAND");
+        System.out.println("ALSO DO NOT CLOSE ANY GIF AND IMAGE WINDOWS.");
+        System.out.println("Remember to DELETE the Files once the players are finished playing.  Thank you and GLHF.");
+        System.out.println("Press 'h' to go to the help menu to learn the special effects: ");
+        System.out.println("Press 'r' when players are ready: ");
+        String key = scan.nextLine();
+        System.out.println();
+        if (key.equals("r"))
+        {
+            System.out.println("How many players are playing?(2-4) ");
+            int size = scan.nextInt();
+            if (size < 2 || size > 4)
+            {
+                System.exit(0);
+            }//exits program if the # of players is not between 2 and 4
+            for(int j = 0; j < 4; j++)
+            {
+                EKC.add(j, "Skip");
+            }//add 4 "Skip" cards to EKC deck
+            for(int k = 4; k < 8; k++)
+            {
+                EKC.add(k, "Attack");
+            }//add 4 "Attack" cards to EKC deck
+            for(int l = 8; l < 12; l++)
+            {
+                EKC.add(l, "Shuffle");
+            }//add 4 "Shuffle" cards to EKC deck
+            for(int m = 12; m < 16; m++)
+            {
+                EKC.add(m, "Favor");
+            }//add 4 "Favor" cards to EKC deck
+            for(int n = 16; n < 20; n++)
+            {
+                EKC.add(n, "Hairy Potato Cat");
+            }//add 4 "Hairy Potato Cat" cards to EKC deck
+            for(int o = 20; o < 24; o++)
+            {
+                EKC.add(o, "Cattermelon");
+            }//add 4 "Cattermelon" cards to EKC deck
+            for(int p = 24; p < 28; p++)
+            {
+                EKC.add(p, "Rainbow-Ralphing Cat");
+            }//add 4 "Rainbow-Ralphing Cat" cards to EKC deck
+            for(int q = 28; q < 32; q++)
+            {
+                EKC.add(q, "Beard Cat");
+            }//add 4 "Beard Cat" cards to EKC deck
+            for(int r = 32; r < 36; r++)
+            {
+                EKC.add(r, "Taco Cat");
+            }//add 4 "Taco Cat" cards to EKC deck
+            for(int s = 36; s < 41; s++)
+            {
+                EKC.add(s, "See the Future");
+            }//add 4 "See the Future" cards to EKC deck
+            for(int t = 41; t < 46; t++)
+            {
+                EKC.add(t, "Nope");
+            }//add 5 "Nope" cards to EKC deck
+            if (size == 2)
+            {
+                EKC.add(46, "Exploding Kittens");
+            }//if # of players = 2, then add 1 "Exploding Kittens" card to EKC deck
+            if (size == 3)
+            {
+                EKC.add(46, "Exploding Kittens");
+                EKC.add(47, "Exploding Kittens");
+            }//if # of players = 3, then add 2 "Exploding Kittens" card to EKC deck
+            if (size == 4)
+            {
+                EKC.add(46, "Exploding Kittens");
+                EKC.add(47, "Exploding Kittens");
+                EKC.add(48, "Exploding Kittens");
+            }//if # of players = 4, then add 3 "Exploding Kittens" card to EKC deck
+            Players p = new Players();
+            myEKC = EKC;
+            Collections.shuffle(myEKC);
+            p.firstPlayerStart(size, myEKC, stat);
+        }
+        if (key.equals("h"))
+        {
+            Help c2 = new Help();
+        }
+    }//constructor of ExplodingKittens()
+}
+
+
+
