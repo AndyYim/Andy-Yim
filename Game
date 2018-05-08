@@ -441,10 +441,10 @@ public class Game extends Players
                             }//ends if nopeChoice != 0
                             if (nopeChoice == 0)
                             {
-                                VisualFV f = new VisualFV();
-                                f.main();
                                 if (oneChoice.equals("Favor"))
                                 {
+                                    VisualFV f = new VisualFV();
+                                    f.main();
                                     switch (numFavor)
                                     {
                                         case 2:
@@ -1585,10 +1585,10 @@ public class Game extends Players
                             }
                             if (nopeChoice == 0)
                             {
-                                VisualFV f = new VisualFV();
-                                f.main();
                                 if (twoChoice.equals("Favor"))
                                 {
+                                    VisualFV f = new VisualFV();
+                                    f.main();
                                     switch (numFavor)
                                     {
                                         case 1:
@@ -2813,10 +2813,11 @@ public class Game extends Players
                             }
                             if (nopeChoice == 0)
                             {
-                                VisualFV f = new VisualFV();
-                                f.main();
+
                                 if(threeChoice.equals("Favor"))
                                 {
+                                    VisualFV f = new VisualFV();
+                                    f.main();
                                     switch (numFavor)
                                     {
                                         case 1:
@@ -4030,10 +4031,10 @@ public class Game extends Players
                             }
                             if (nopeChoice == 0)
                             {
-                                VisualFV f = new VisualFV();
-                                f.main();
                                 if (fourChoice.equals("Favor"))
                                 {
+                                    VisualFV f = new VisualFV();
+                                    f.main();
                                     switch (numFavor)
                                     {
                                         case 1:
@@ -4766,7 +4767,4 @@ public class Game extends Players
         }
     }//ends player4 method
 }//ends Game class
-
-
-
 
