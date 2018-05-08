@@ -16,20 +16,11 @@ import java.awt.*;
 import javax.swing.*;
 import java.net.URL;
 import java.awt.image.BufferedImage;
-/**
- * The class Attack is a component of the replica of the Exploding Kittens game. 
- * @prereq      none
- * @param     none
- * @return       none             
- * @post        The program prints out a window of a picture and a window of a gif of the corresponding special effect.
- * Andy Yim and Tommy Yim 
- * 
- */
 public class Attack extends JPanel{
     Image img;
     public void Attacc() throws IOException
     {
-        URL url = new URL("https://cdn-images-1.medium.com/max/800/1*BfDDzmCZJmTFPlkwgkyzyw.jpeg");
+        URL url = new URL("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRuRRd8QyUW57f4JNBA1e_i9NUc1BJYL7fB1N9SUvMq978I3dtwZQ");
         ImageIcon icon=new ImageIcon(url);
         JLabel lbl=new JLabel();
         lbl.setIcon(icon);
@@ -46,12 +37,13 @@ public class Attack extends JPanel{
         f.setVisible(true);
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
-    }//ends Attacc method
+    }
     // should be paintComponent for a JComponent
     //public void paint(Graphics g) {
     public void paintComponent(Graphics g) {
         g.drawImage(img, 0, 0, this);
-    }//ends paintComponent method
+    }
+
     public Attack() {
         try {
             URL url = new URL("https://i.imgur.com/ZRDgoQH.gif");
@@ -66,14 +58,13 @@ public class Attack extends JPanel{
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }//ends constructor
+    }
+
     public Dimension getPreferredSize() {
         if (img == null) {
             return new Dimension(700, 500);
         } else {
             return new Dimension(img.getWidth(this), img.getHeight(this));
         }
-    }//ends getPreferredSize method
-}//ends Attack class
-
-
+    }
+}
